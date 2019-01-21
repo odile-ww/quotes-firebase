@@ -1,0 +1,17 @@
+nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  header {
+    padding-top: 18px;
+  }
+
+  ul {
+    flex-basis: 70%;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+
+}
