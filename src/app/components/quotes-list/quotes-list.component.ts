@@ -15,7 +15,7 @@ export class QuotesListComponent implements OnInit {
 
   ngOnInit() {
     this.quoteService.getQuotes().subscribe(quotes => {
-      console.log(quotes);
+      this.quotes = quotes;
     });
   }
 }

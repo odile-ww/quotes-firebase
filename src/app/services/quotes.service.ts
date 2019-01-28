@@ -25,14 +25,15 @@ export class QuotesService {
   }
 
   getQuotes(): Observable<Quote[]> {
-    this.quotes = this.quotesCollection.snapshotChanges().map(changes => {
-      return changes.map(action => {
-        const data = action.payload.doc.data() as Quote;
-        data.id = action.payload.doc.id;
-        return data;
-      });
-    });
-
+    this.quotes = this.quotesCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as Quote;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      })
+    );
     return this.quotes;
   }
 }
