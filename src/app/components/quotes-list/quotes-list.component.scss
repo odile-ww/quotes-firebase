@@ -1,0 +1,25 @@
+.allQuotes {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  list-style-type: none;
+}
+
+.tags-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.tag {
+  font-size: 12px;
+  text-align: center;
+  background-color: #d9dde0;
+  color: #1e311b;
+  padding: 3px 1px;
+  border-radius: 20px;
+}
+
+cite {
+  font-weight: 100;
+}

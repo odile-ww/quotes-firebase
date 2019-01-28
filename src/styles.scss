@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  font: 16px "Raleway", sans-serif;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+main {
+  width: 97%;
+  max-width: 1300px;
+  margin: 60px auto;
+}
+
+h4 {
+  color: #274a2a;
+}
+
+h1,
+h2,
+h3,
+a,
+cite {
+  font-family: "Happy Monkey", cursive;
+  color: #a9c3ba;
+}
+
+.brand-text {
+  color: #809f39;
+}

@@ -1,3 +1,17 @@
-<p>
-  home works!
-</p>
+<div class="hero">
+  <h1>Welcome to the <span class="brand-text">QuotesApp</span>!</h1>
+  <p class="heading">This is a space where you can get inspired by great musings of thinkers, writers or just smart
+    people!</p>
+  <p class="heading">Know a great quote? Don't hesitate to submit it for our consideration!</p>
+  <div class="button-wrapper"><button>Suggest a Quote</button></div>
+</div>
+<h2>Featured Quotes</h2>
+<section class="featured-quotes">
+  <ng-container *ngFor="let quote of featuredQuotes">
+    <div class="featured-quote-item" *ngIf="quote.isFeatured">
+      <p>{{quote.content}}</p>
+      <h4> &#45; {{quote.author}}, <cite>{{quote.title}}</cite></h4>
+    </div>
+  </ng-container>
+
+</section>

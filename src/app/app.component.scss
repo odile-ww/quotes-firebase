@@ -1,17 +1,37 @@
-nav {
+.page-header {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1;
 
-  header {
-    padding-top: 18px;
+
+  .brand {
+    font-size: 1.5rem;
+    padding-top: 10px;
+    margin-left: 16px;
   }
 
-  ul {
-    flex-basis: 70%;
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
+  nav {
+    flex-basis: 80%;
+    text-transform: uppercase;
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      li {
+        margin-right: 1em;
+        list-style-type: none;
+        padding-bottom: 5px;
+      }
+    }
   }
 
+  a {
+    text-decoration: none;
+  }
 }
