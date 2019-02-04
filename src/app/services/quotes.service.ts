@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Quote } from '../models/QuoteModel';
+import { Author } from '../models/AuthorModel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,18 @@ import { Quote } from '../models/QuoteModel';
 export class QuotesService {
   quotesCollection: AngularFirestoreCollection<Quote>;
   quoteDoc: AngularFirestoreDocument<Quote>;
+  authorsCollection: AngularFirestoreCollection<Author>;
+  authorDoc: AngularFirestoreDocument<Author>;
+
   quotes: Observable<Quote[]>;
   quote: Observable<Quote>;
+  authors: Observable<Author[]>;
+  author: Observable<Author>;
 
   constructor(private afs: AngularFirestore) {
-    this.quotesCollection = this.afs.collection('quotes', ref =>
-      ref.orderBy('author')
+    this.quotesCollection = this.afs.collection('quotes');
+    this.authorsCollection = this.afs.collection('autors', ref =>
+      ref.orderBy('lastName')
     );
   }
 
@@ -35,5 +42,18 @@ export class QuotesService {
       })
     );
     return this.quotes;
+  }
+
+  getAuthors(): Observable<Author[]> {
+    this.authors = this.authorsCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as Author;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      })
+    );
+    return this.authors;
   }
 }

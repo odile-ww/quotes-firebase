@@ -18,7 +18,7 @@ body {
 
 main {
   width: 97%;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 60px auto;
 }
 
@@ -35,6 +35,14 @@ cite {
   color: #a9c3ba;
 }
 
+.heading {
+  font-size: 1.2rem;
+}
+
 .brand-text {
   color: #809f39;
+}
+
+a {
+  text-decoration: none;
 }
