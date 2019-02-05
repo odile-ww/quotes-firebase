@@ -1,8 +1,13 @@
+h2 {
+  margin-left: 5px;
+}
+
 .allQuotes {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   list-style-type: none;
+  padding-left: 0;
 
   .allQuotes-item {
     border-left: 1px solid #809f39;

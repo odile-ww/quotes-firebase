@@ -1,14 +1,16 @@
-<h2>Authors</h2>
-<section class="authors-grid">
-  <div class="author-card" *ngFor="let author of authors">
-    <h3>{{author.fullName}}</h3>
-    <div class="card-body">
-      <header class="heading">Notable Works:</header>
-      <ul>
-        <li *ngFor="let work of author.works">{{work}}</li>
-      </ul>
-      <p>Read more about <a href="{{author.link}}" target="_blank">{{author.fullName}}</a></p>
-    </div>
+<div class="content-wrapper">
+  <h2>Authors</h2>
+  <section class="authors-grid">
+    <div class="author-card" *ngFor="let author of authors">
+      <h3>{{author.fullName}}</h3>
+      <div class="card-body">
+        <header class="heading">Notable Works:</header>
+        <ul>
+          <li *ngFor="let work of author.works">{{work}}</li>
+        </ul>
+        <p>Read more about <a href="{{author.link}}" target="_blank">{{author.fullName}}</a></p>
+      </div>
 
-  </div>
-</section>
+    </div>
+  </section>
+</div>

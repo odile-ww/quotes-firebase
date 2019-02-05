@@ -13,23 +13,6 @@
 
 .button-wrapper {
   margin-top: 35px;
-
-  button {
-    background-color: #809f39;
-    border: 1px solid #809f39;
-    color: #fff;
-    font: 1.2rem "Happy Monkey", cursive;
-    padding: 5px 0;
-    width: 250px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s linear;
-  }
-
-  button:hover,
-  button:active {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
-  }
 }
 
 .photo-credit {
@@ -44,9 +27,8 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   .featured-quote-item {
-    &:not(:last-child) {
-      border-right: 2px solid #809f39;
-      padding: 0.5rem;
-    }
+    border-left: 4px solid #809f39;
+    box-shadow: 0 5px 10px rgba(169, 195, 186, 0.25), 0 10px 10px rgba(169, 195, 186, 0.22);
+    padding: 0.5rem;
   }
 }
