@@ -25,7 +25,9 @@ export class QuotesService {
   author: Observable<Author>;
 
   constructor(private afs: AngularFirestore) {
-    this.quotesCollection = this.afs.collection('quotes');
+    this.quotesCollection = this.afs.collection('quotes', ref =>
+      ref.orderBy('author')
+    );
     this.authorsCollection = this.afs.collection('autors', ref =>
       ref.orderBy('lastName')
     );
@@ -42,6 +44,10 @@ export class QuotesService {
       })
     );
     return this.quotes;
+  }
+
+  addQuote(quote: Quote) {
+    this.quotesCollection.add(quote);
   }
 
   getAuthors(): Observable<Author[]> {

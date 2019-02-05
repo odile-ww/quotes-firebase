@@ -1,3 +1,54 @@
-<p>
-  quote-create works!
-</p>
+<div class="content-wrapper">
+
+  <h2>Add New Quote</h2>
+  <form [formGroup]="quoteForm" (ngSubmit)="saveQuote()">
+    <div class="form-group">
+      <div class="row">
+        <label for="content">Content:</label>
+        <textarea formControlName="content" rows="5" id="content"></textarea>
+      </div>
+      <div class="row error-container">
+        <div *ngIf="content.errors?.required && content.touched" class="error">
+          This field is required.
+        </div>
+        <div *ngIf="content.errors?.minlength && content.touched">
+          Must have at least 5 characters.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <label for="isFeatured">Featured Quote:</label>
+        <input type="checkbox" formControlName="isFeatured" id="isFeatured" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <label for="author">Author:</label>
+        <input type="text" formControlName="author" id="author" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <label for="title">Title:</label>
+        <input type="text" formControlName="title" id="title" />
+      </div>
+    </div>
+
+    <div formArrayName="tags" class="form-group">
+      <div *ngFor="let tag of tags.controls; let i = index" class="row">
+        <label for="tag-{{ i }}">Tag {{ i + 1 }}:</label>
+        <input type="text" [formControlName]="i" id="tag-{{ i }}" />
+      </div>
+      <div class="error" *ngIf="tags.length >= 5">You've reached the maximum number of tags allowed for a quote.</div>
+      <div class="row button-wrapper">
+        <button (click)="addTag($event)" [disabled]="tags.length >= 5">Add Tag</button>
+      </div>
+    </div>
+
+    <input type="submit" name="Submit" class="button button-lg" [disabled]="quoteForm.invalid" />
+  </form>
+</div>

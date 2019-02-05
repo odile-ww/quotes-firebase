@@ -1,0 +1,65 @@
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &.error-container {
+      margin: 0;
+    }
+
+    &.button-wrapper {
+      justify-content: flex-end;
+    }
+  }
+
+  input,
+  textarea {
+    width: 80%;
+    margin-left: 20px;
+    line-height: 30px;
+    font-family: "Happy Monkey", cursive;
+  }
+
+  .button-lg {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  #isFeatured {
+    height: 0;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #a9c3ba;
+      cursor: pointer;
+    }
+
+    &:checked {
+      &::before {
+        background-color: #a9c3ba;
+        transition: all 0.3s ease-in-out;
+
+      }
+    }
+  }
+
+}
