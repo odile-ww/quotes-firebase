@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'quotes', component: QuotesListComponent },
-  { path: 'quotes/add', component: QuoteCreateComponent },
+  { path: 'add', component: QuoteCreateComponent },
+  { path: 'edit/:quoteId', component: QuoteCreateComponent },
+  { path: 'create', component: QuoteCreateComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

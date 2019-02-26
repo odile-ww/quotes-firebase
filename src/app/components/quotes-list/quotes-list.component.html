@@ -8,6 +8,11 @@
         <div class="tags-container">
           <span class="tag" *ngFor="let tag of quote.tags">{{tag}}</span>
         </div>
+        <div class="icons-container">
+          <a [routerLink]="['/edit', quote.id]" routerLinkActive="router-link-active">
+            <i class="fas fa-pencil-alt"></i>
+          </a>
+        </div>
       </li>
     </ul>
   </section>

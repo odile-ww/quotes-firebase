@@ -1,11 +1,16 @@
 <div class="content-wrapper">
-
-  <h2>Add New Quote</h2>
+  <h2 *ngIf="mode === 'create'">Add New Quote</h2>
+  <h2 *ngIf="mode === 'edit'">Edit Quote</h2>
+  <div *ngIf="mode === 'edit'" class="delete-button-wrapper">
+    <button class="delete-button" (click)="deleteQuote($event)">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
   <form [formGroup]="quoteForm" (ngSubmit)="saveQuote()">
     <div class="form-group">
       <div class="row">
         <label for="content">Content:</label>
-        <textarea formControlName="content" rows="5" id="content"></textarea>
+        <textarea formControlName="content" rows="5" id="content" name="content"></textarea>
       </div>
       <div class="row error-container">
         <div *ngIf="content.errors?.required && content.touched" class="error">
@@ -27,25 +32,32 @@
     <div class="form-group">
       <div class="row">
         <label for="author">Author:</label>
-        <input type="text" formControlName="author" id="author" />
+        <input type="text" formControlName="author" id="author" name="author" />
       </div>
     </div>
 
     <div class="form-group">
       <div class="row">
         <label for="title">Title:</label>
-        <input type="text" formControlName="title" id="title" />
+        <input type="text" formControlName="title" id="title" name="title" />
       </div>
     </div>
 
     <div formArrayName="tags" class="form-group">
-      <div *ngFor="let tag of tags.controls; let i = index" class="row">
+      <div *ngFor="let tag of tags.controls; let i = index" class="row row-tags">
         <label for="tag-{{ i }}">Tag {{ i + 1 }}:</label>
         <input type="text" [formControlName]="i" id="tag-{{ i }}" />
+        <button class="remove-tag" (click)="deleteTag(i)">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-      <div class="error" *ngIf="tags.length >= 5">You've reached the maximum number of tags allowed for a quote.</div>
+      <div class="error" *ngIf="tags.length >= 5">
+        You've reached the maximum number of tags allowed for a quote.
+      </div>
       <div class="row button-wrapper">
-        <button (click)="addTag($event)" [disabled]="tags.length >= 5">Add Tag</button>
+        <button (click)="addTag($event)" [disabled]="tags.length >= 5">
+          Add Tag
+        </button>
       </div>
     </div>
 
