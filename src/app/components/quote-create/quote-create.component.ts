@@ -73,14 +73,15 @@ export class QuoteCreateComponent implements OnInit {
     this.tags.removeAt(i);
   }
 
-  saveQuote() {
+  saveQuote(value: Quote) {
     if (this.quoteForm.invalid) {
       return;
     }
     if (this.mode === 'create') {
-      this.quotesService.addQuote(this.quoteForm.value);
+      this.quotesService.addQuote(value);
     } else {
-      this.quotesService.updateQuote(this.quoteForm.value);
+      value.id = this.quoteId;
+      this.quotesService.updateQuote(value);
     }
     this.router.navigate(['/quotes']);
   }

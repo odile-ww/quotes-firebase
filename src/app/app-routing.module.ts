@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'quotes', component: QuotesListComponent },
   { path: 'add', component: QuoteCreateComponent },
   { path: 'edit/:quoteId', component: QuoteCreateComponent },
-  { path: 'create', component: QuoteCreateComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
