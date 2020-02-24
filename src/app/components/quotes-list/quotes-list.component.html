@@ -4,7 +4,7 @@
     <ul class="allQuotes">
       <li class="allQuotes-item" *ngFor="let quote of quotes">
         <p>{{ quote.content }}</p>
-        <h4> &#45; {{quote.author}}, <cite>{{quote.title}}</cite></h4>
+        <h4> &#45; <span class="clickable" (click)="filterQuotesByAuthor($event, quote.author)">{{quote.author}}</span>, <cite>{{quote.title}}</cite></h4>
         <div class="tags-container">
           <span class="tag" *ngFor="let tag of quote.tags">{{tag}}</span>
         </div>

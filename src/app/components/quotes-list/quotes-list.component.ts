@@ -14,8 +14,19 @@ export class QuotesListComponent implements OnInit {
   constructor(private quoteService: QuotesService) {}
 
   ngOnInit() {
+    this.getQuotes();
+  }
+
+  getQuotes() {
     this.quoteService.getQuotes().subscribe(quotes => {
       this.quotes = quotes;
     });
   }
+
+  filterQuotesByAuthor(event, author) {
+    this.quoteService.getQuotesByAuthor(author).subscribe(filteredQuotes => {
+      this.quotes = filteredQuotes;
+    });
+  }
+
 }
