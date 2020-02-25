@@ -45,9 +45,24 @@ export class QuotesService {
     );
     return this.quotes;
   }
-  getQuotesByAuthor(authorName): Observable<Quote[]> {
+  getQuotesByKey(key, value): Observable<Quote[]> {
     return this.afs.collection('quotes', ref =>
-    ref.where('author', '==', authorName))
+    ref.where(key, '==', value))
+    .snapshotChanges()
+    .pipe(
+      map(snaps => {
+        return snaps.map(snap => {
+          const data = snap.payload.doc.data() as Quote;
+          data.id = snap.payload.doc.id;
+          return data;
+        });
+      })
+    );
+  }
+
+  getQuotesByTag(tag): Observable<Quote[]> {
+    return this.afs.collection('quotes', ref =>
+    ref.where('tags', 'array-contains', tag))
     .snapshotChanges()
     .pipe(
       map(snaps => {

@@ -10,6 +10,7 @@ import { Quote } from '../../models/QuoteModel';
 })
 export class QuotesListComponent implements OnInit {
   quotes: Quote[];
+  hasFilter: boolean;
 
   constructor(private quoteService: QuotesService) {}
 
@@ -23,10 +24,30 @@ export class QuotesListComponent implements OnInit {
     });
   }
 
-  filterQuotesByAuthor(event, author) {
-    this.quoteService.getQuotesByAuthor(author).subscribe(filteredQuotes => {
+  filterQuotesByAuthor(event, value) {
+    this.quoteService.getQuotesByKey('author', value).subscribe(filteredQuotes => {
       this.quotes = filteredQuotes;
+      this.hasFilter = true;
     });
+  }
+
+  filterQuotesByTitle(event, value) {
+    this.quoteService.getQuotesByKey('title', value).subscribe(filteredQuotes => {
+      this.quotes = filteredQuotes;
+      this.hasFilter = true;
+    });
+  }
+
+  filterQuotesByTag(event, tag) {
+    this.quoteService.getQuotesByTag(tag).subscribe(filteredQuotes => {
+      this.quotes = filteredQuotes;
+      this.hasFilter = true;
+    });
+  }
+
+  clearFilter(event) {
+    this.getQuotes();
+    this.hasFilter = false;
   }
 
 }
