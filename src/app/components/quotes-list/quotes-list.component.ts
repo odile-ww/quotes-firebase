@@ -11,6 +11,7 @@ import { Quote } from '../../models/QuoteModel';
 export class QuotesListComponent implements OnInit {
   quotes: Quote[];
   hasFilter: boolean;
+  filteredValue: string;
 
   constructor(private quoteService: QuotesService) {}
 
@@ -24,30 +25,25 @@ export class QuotesListComponent implements OnInit {
     });
   }
 
-  filterQuotesByAuthor(event, value) {
-    this.quoteService.getQuotesByKey('author', value).subscribe(filteredQuotes => {
-      this.quotes = filteredQuotes;
-      this.hasFilter = true;
-    });
-  }
-
-  filterQuotesByTitle(event, value) {
-    this.quoteService.getQuotesByKey('title', value).subscribe(filteredQuotes => {
-      this.quotes = filteredQuotes;
-      this.hasFilter = true;
-    });
-  }
-
-  filterQuotesByTag(event, tag) {
+  filterQuotesByTag(tag) {
     this.quoteService.getQuotesByTag(tag).subscribe(filteredQuotes => {
       this.quotes = filteredQuotes;
       this.hasFilter = true;
+      this.filteredValue = tag;
     });
   }
 
-  clearFilter(event) {
+  clearFilter() {
     this.getQuotes();
     this.hasFilter = false;
+    this.filteredValue = '';
   }
 
+  filterQuotesByKey(key, value) {
+    this.quoteService.getQuotesByKey(key, value).subscribe(filteredQuotes => {
+      this.quotes = filteredQuotes;
+      this.hasFilter = true;
+      this.filteredValue = value;
+    });
+  }
 }
