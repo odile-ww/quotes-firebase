@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { QuotesService } from '../../services/quotes.service';
 import { Author } from '../../models/AuthorModel';
@@ -11,7 +12,7 @@ import { Author } from '../../models/AuthorModel';
 export class AuthorsComponent implements OnInit {
   authors: Author[];
 
-  constructor(private quoteService: QuotesService) {}
+  constructor(private quoteService: QuotesService, private router: Router) {}
 
   ngOnInit() {
     this.quoteService.getAuthors().subscribe(authors => {
