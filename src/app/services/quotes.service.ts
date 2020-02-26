@@ -17,8 +17,6 @@ export class QuotesService {
   quotesCollection: AngularFirestoreCollection<Quote>;
   quoteDoc: AngularFirestoreDocument<Quote>;
   authorsCollection: AngularFirestoreCollection<Author>;
-  authorDoc: AngularFirestoreDocument<Author>;
-
   quotes: Observable<Quote[]>;
   quote: Observable<Quote>;
   authors: Observable<Author[]>;
@@ -96,13 +94,11 @@ export class QuotesService {
   }
 
   updateQuote(quote: Quote) {
-    this.quoteDoc = this.afs.doc(`quotes/${quote.id}`);
-    this.quoteDoc.update(quote);
+    this.afs.doc(`quotes/${quote.id}`).update(quote);
   }
 
   deleteQuote(quote: Quote) {
-    this.quoteDoc = this.afs.doc(`quotes/${quote.id}`);
-    this.quoteDoc.delete();
+    this.afs.doc(`quotes/${quote.id}`).delete();
   }
 
   getAuthors(): Observable<Author[]> {

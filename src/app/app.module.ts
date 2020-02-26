@@ -29,7 +29,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [],
   bootstrap: [AppComponent]

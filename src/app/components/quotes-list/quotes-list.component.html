@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <h2 *ngIf="!hasFilter">All Quotes</h2>
   <header *ngIf="hasFilter">
-    <p>You're seing quotes for:
+    <p>You're seeing quotes for:
       <span>{{ filteredValue }}</span>
     </p>
     <h2 class="clickable" (click)="clearFilter()">X Clear filter</h2>
