@@ -18,11 +18,13 @@ export class QuotesListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private quoteService: QuotesService) {}
 
   ngOnInit() {
-    const snapshotParams = Object.keys(this.route.snapshot.params);
-    const queryKey = snapshotParams[0];
+    const snapshotParams = Object.keys(this.route.snapshot.params),
+          queryKey = snapshotParams[0];
 
     if (snapshotParams.length > 0) {
-      this.filterQuotesByKey(queryKey, this.route.snapshot.params.author);
+      const serializedParamValue = this.serializeUrl(this.route.snapshot.params.author);
+
+      this.filterQuotesByKey(queryKey, serializedParamValue);
     } else {
       this.getQuotes();
     }
@@ -58,5 +60,9 @@ export class QuotesListComponent implements OnInit {
       this.hasFilter = true;
       this.filteredValue = value;
     });
+  }
+  // TO DO: move to some utility file
+  serializeUrl(value: string): string {
+    return value.replace(/-/gi, ' ');
   }
 }

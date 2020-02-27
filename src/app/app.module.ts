@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {ReactiveFormsModule } from '@angular/forms';
+import { UrlSerializer } from '@angular/router';
 
 import { environment } from '../environments/environment';
 
@@ -14,6 +15,8 @@ import { QuotesListComponent } from './components/quotes-list/quotes-list.compon
 import { AuthorsComponent } from './components/authors/authors.component';
 import { QuoteCreateComponent } from './components/quote-create/quote-create.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+
+import { CustomSerializer } from './utils/custom-url-serializer';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],
-  providers: [],
+  providers: [
+    { provide: UrlSerializer, useClass: CustomSerializer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
