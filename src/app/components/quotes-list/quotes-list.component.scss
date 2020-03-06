@@ -1,4 +1,6 @@
-h2 {
+@import "~bootswatch/dist/minty/variables";
+
+h5 {
   margin-left: 5px;
 }
 
@@ -6,89 +8,42 @@ header {
   display: flex;
   justify-content: space-between;
 
-  h2 {
-    font-size: 1.2rem;
-    color: #ff6b6b;
+  .clickable {
+    color: $danger;
   }
-  p {
-    font: 1.1rem "Happy Monkey";
-    color: #a9c3ba;
 
+  h5 {
     span {
-      color: #809f39;
+      color: $primary;
       font-weight: 600;
     }
   }
 }
 
-.allQuotes {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  list-style-type: none;
-  padding-left: 0;
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 
-  .allQuotes-item {
-    border-left: 1px solid #809f39;
-    border-top: 1px solid #809f39;
-    padding: 10px;
-    margin: 5px 5px 10px 10px;
-    display: flex;
-    flex-direction: column;
-
-    p {
-      margin: 0;
-    }
-
-    cite {
-      font-weight: 100;
-    }
-
-    .tags-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
-      margin-bottom: 10px;
-
-      .tag {
-        font-size: 12px;
-        text-align: center;
-        background-color: #d9dde0;
-        color: #1e311b;
-        padding: 3px 1px;
-        border-radius: 20px;
-      }
-    }
-
-    .icons-container {
-      margin-top: auto;
-      display: flex;
-      justify-content: flex-end;
-
-      a {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-right: 10px;
-        padding: 10px;
-        background-color: #fff;
-        border: none;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        border-radius: 100%;
-
-        &:hover {
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-            0 10px 10px rgba(0, 0, 0, 0.22);
-        }
-      }
-
-      i {
-        &.fa-pencil-alt {
-          color: #809f39;
-          font-size: 1.2rem;
-        }
-      }
+  .badge {
+    margin-top: 5px;
+    &:not(:last-child) {
+      margin-right: 5px;
     }
   }
+}
 
+.card {
+  position: relative;
+}
+.edit-btn-container {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+  border: 1px solid $warning;
+  background-color: $white;
+  z-index: 10;
+  padding: 10px;
 }

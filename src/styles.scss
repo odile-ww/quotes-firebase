@@ -1,120 +1,16 @@
-html {
-  width: 100%;
-  box-sizing: border-box;
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+h1, h5 {
+  padding: 2rem 0;
 }
 
-body {
-  width: 100%;
-  margin: 0;
-  font: 16px "Raleway", sans-serif;
-  scroll-behavior: smooth;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-main {
-  margin: 56px 0;
-}
-
-h4 {
-  color: #274a2a;
-}
-
-h1,
-h2,
-h3,
-a,
-cite {
-  font-family: "Happy Monkey", cursive;
-  color: #a9c3ba;
-}
-
-.heading {
-  font-size: 1.2rem;
-}
-
-.brand-text {
-  color: #809f39;
-}
-
-a {
-  text-decoration: none;
-}
-
-.error {
-  width: 100%;
-  text-align: right;
-  color: #d11d1d;
-}
-
-input,
-textarea {
-  &.ng-touched {
-    &.ng-invalid {
-      border: 1px solid #d11d1d;
-    }
-
-    &:not(.ng-pristine) {
-      &.ng-valid {
-        border: 1px solid #809f39;
-      }
-    }
-  }
-
-}
-
-button,
-.button {
-  background-color: #809f39;
-  border: 1px solid #809f39;
-  color: #fff;
-  font: 1.2rem "Happy Monkey", cursive;
-  padding: 5px 0;
-  width: 250px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s linear;
-
-  &:hover,
-  &:active {
-    &:not(:disabled) {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-      cursor: pointer;
-    }
-
-  }
-
-  &.button-lg {
-    background-color: #a9c3ba;
-    border: 1px solid #a9c3ba;
-    width: 100%;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-.content-wrapper {
-  padding: 15px;
-
-  @media screen and (min-width: 1000px) {
-    padding: 15px 100px;
-  }
+.blockquote-footer {
+  color: $primary;
+  font-size: 102%;
 }
 
 .clickable {
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.link-text {
-  color: #809f39;
-  text-align: right;
-  padding-right: 10px;
+  cursor: pointer;
 }

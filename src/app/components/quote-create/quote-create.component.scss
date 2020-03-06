@@ -1,6 +1,4 @@
-h2 {
-  text-align: center;
-}
+@import "~bootswatch/dist/minty/variables";
 
 .delete-button-wrapper {
   text-align: right;
@@ -8,7 +6,7 @@ h2 {
   width: 70%;
 
   .delete-button {
-    background-color: #ff6b6b;
+    background-color: $danger;
     border: none;
     width: 60px;
     height: 60px;
@@ -19,6 +17,7 @@ h2 {
 
     &:hover {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      cursor: pointer;
     }
 
     &:focus {
@@ -33,53 +32,12 @@ h2 {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: 0 auto;
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
 
   .row {
-    margin: 20px 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    &.error-container {
-      margin: 0;
-    }
 
     &.button-wrapper {
       justify-content: flex-end;
     }
-  }
-
-  .row-tags {
-    label {
-      width: 20%;
-    }
-
-    input {
-      width: calc(80% - 40px);
-      margin-left: 0;
-    }
-  }
-
-  input,
-  textarea {
-    width: 80%;
-    margin-left: 20px;
-    line-height: 30px;
-    font-family: "Happy Monkey", cursive;
-  }
-
-  .button-lg {
-    width: 100%;
-    margin: 20px 0;
   }
 
   #isFeatured {
@@ -90,23 +48,24 @@ form {
       display: inline-block;
       width: 20px;
       height: 20px;
-      border: 1px solid #a9c3ba;
+      vertical-align: middle;
+      border: 1px solid $gray-400;
+      border-radius: 0.4rem;
       cursor: pointer;
     }
 
     &:checked {
       &::before {
-        background-color: #a9c3ba;
+        background-color: $primary;
         transition: all 0.3s ease-in-out;
 
       }
     }
   }
 
-  .remove-tag {
-    width: 40px;
-    background-color: #ff6b6b;
-    border-color: #ee5253;
+  .input-group {
+    &.col-sm-8 {
+      padding: 0;
+    }
   }
-
 }

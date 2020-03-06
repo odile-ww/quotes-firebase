@@ -17,6 +17,7 @@ import { QuoteCreateComponent } from './components/quote-create/quote-create.com
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { CustomSerializer } from './utils/custom-url-serializer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CustomSerializer } from './utils/custom-url-serializer';
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: UrlSerializer, useClass: CustomSerializer }

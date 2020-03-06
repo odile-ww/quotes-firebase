@@ -1,17 +1,22 @@
-<div class="content-wrapper">
-  <h2>Authors</h2>
-  <section class="authors-grid">
-    <div class="author-card" *ngFor="let author of authors">
-      <h3>{{ author.fullName }}</h3>
-      <div class="card-body">
-        <header class="heading">Notable Works:</header>
-        <ul>
-          <li *ngFor="let work of author.works">{{work}}</li>
-        </ul>
-        <p>Read more about <a href="{{author.link}}" target="_blank">{{ author.fullName }}</a></p>
-        <a class="link-text clickable" [routerLink]="['/quotes', author.fullName]">Get all quotes by <strong>{{ author.fullName }}</strong></a>
-      </div>
-
+<h1 class="text-muted">Authors</h1>
+<section class="card-columns">
+  <div class="card mb-3" *ngFor="let author of authors">
+    <h3 class="card-header">{{ author.fullName }}</h3>
+    <div class="card-body">
+      <h5 class="card-title">Notable Works:</h5>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let work of author.works" class="list-group-item">{{work}}</li>
+      </ul>
+      <p class="card-subtitle text-muted mt-3">
+        <a href="{{author.link}}" target="_blank" class="card-link">
+          Read more about {{ author.fullName }}
+        </a>
+      </p>
+      <p class="card-subtitle text-muted mt-3">
+        <a class="card-link text-secondary" [routerLink]="['/quotes', author.fullName]">
+          All quotes by {{ author.fullName }}
+        </a>
+      </p>
     </div>
-  </section>
-</div>
+  </div>
+</section>

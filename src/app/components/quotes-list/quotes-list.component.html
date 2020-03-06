@@ -1,25 +1,28 @@
-<div class="content-wrapper">
-  <h2 *ngIf="!hasFilter">All Quotes</h2>
-  <header *ngIf="hasFilter">
-    <p>You're seeing quotes for:
-      <span>{{ filteredValue }}</span>
-    </p>
-    <h2 class="clickable" (click)="clearFilter()">X Clear filter</h2>
-  </header>
-  <section>
-    <ul class="allQuotes">
-      <li class="allQuotes-item" *ngFor="let quote of quotes">
-        <p>{{ quote.content }}</p>
-        <h4> &#45; <span class="clickable" (click)="filterQuotesByKey('author', quote.author)">{{quote.author}}</span>, <cite class="clickable" (click)="filterQuotesByKey('title', quote.title)">{{quote.title}}</cite></h4>
+<h1 class="text-muted" *ngIf="!hasFilter">All Quotes</h1>
+<header *ngIf="hasFilter">
+  <h5 class="text-muted">You're seeing quotes for:
+    <span>{{ filteredValue }}</span>
+  </h5>
+  <h5 class="clickable" (click)="clearFilter()">
+    <i class="fas fa-times"></i>
+    Clear filter
+  </h5>
+</header>
+<section class="card-columns">
+    <blockquote class="card" *ngFor="let quote of quotes">
+      <div class="card-body">
+        <p class="card-text">{{ quote.content }}</p>
         <div class="tags-container">
-          <span class="tag clickable" *ngFor="let tag of quote.tags" (click)="filterQuotesByTag(tag)">{{tag}}</span>
+          <span class="badge badge-pill badge-primary clickable" *ngFor="let tag of quote.tags" (click)="filterQuotesByTag(tag)">{{tag}}</span>
         </div>
-        <div class="icons-container">
-          <a [routerLink]="['/edit', quote.id]" routerLinkActive="router-link-active">
-            <i class="fas fa-pencil-alt"></i>
-          </a>
-        </div>
-      </li>
-    </ul>
-  </section>
-</div>
+      </div>
+      <div class="edit-btn-container">
+        <a [routerLink]="['/edit', quote.id]" routerLinkActive="router-link-active">
+          <i class="fas fa-pencil-alt text-warning"></i>
+        </a>
+      </div>
+      <footer class="card-footer blockquote-footer text-right">
+        <span class="clickable" (click)="filterQuotesByKey('author', quote.author)">{{quote.author}}</span>, <cite class="clickable text-secondary" (click)="filterQuotesByKey('title', quote.title)">{{quote.title}}</cite>
+      </footer>
+    </blockquote>
+</section>
