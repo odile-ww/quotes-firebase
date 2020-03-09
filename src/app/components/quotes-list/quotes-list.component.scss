@@ -39,11 +39,20 @@ header {
 }
 .edit-btn-container {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  border-radius: 50%;
-  border: 1px solid $warning;
-  background-color: $white;
-  z-index: 10;
-  padding: 10px;
+  top: -7px;
+  right: -7px;
+  display: flex;
+  justify-content: flex-end;
+
+  .custom-float-button {
+    width: 40px;
+    height: 40px;
+    background-color: $white;
+    border: 1px solid $warning;
+    z-index: 100;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
