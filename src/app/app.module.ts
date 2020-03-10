@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UrlSerializer } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -20,6 +21,7 @@ import { QuoteCreateComponent } from './components/quote-create/quote-create.com
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import { CustomSerializer } from './utils/custom-url-serializer';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CustomSerializer } from './utils/custom-url-serializer';
     QuotesListComponent,
     AuthorsComponent,
     QuoteCreateComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +39,11 @@ import { CustomSerializer } from './utils/custom-url-serializer';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     BrowserAnimationsModule,
     CarouselModule.forRoot()
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

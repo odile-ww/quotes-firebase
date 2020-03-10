@@ -15,11 +15,15 @@ export class QuotesListComponent implements OnInit {
   hasFilter: boolean;
   filteredValue: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private quoteService: QuotesService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private quoteService: QuotesService
+    ) { }
 
   ngOnInit() {
     const snapshotParams = Object.keys(this.route.snapshot.params),
-          queryKey = snapshotParams[0];
+      queryKey = snapshotParams[0];
 
     if (snapshotParams.length > 0) {
       const serializedParamValue = this.serializeUrl(this.route.snapshot.params.author);

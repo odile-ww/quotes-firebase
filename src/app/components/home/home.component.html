@@ -1,5 +1,5 @@
 <h1 class="text-muted">Featured Quotes</h1>
-<carousel [interval]="2000">
+<carousel>
   <ng-container *ngFor="let quote of featuredQuotes">
     <slide *ngIf="quote.isFeatured" class="text-center p-4">
       <blockquote class="blockquote text-center">
