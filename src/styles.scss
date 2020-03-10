@@ -7,11 +7,6 @@ h5 {
   padding: 2rem 0;
 }
 
-.blockquote-footer {
-  color: $primary;
-  font-size: 102%;
-}
-
 .clickable {
   cursor: pointer;
 }
@@ -38,5 +33,28 @@ h5 {
   .fa-trash-alt {
     color: #fff;
     font-size: 1.5rem;
+  }
+}
+
+.carousel {
+  min-height: 400px;
+  background-color: $gray-100;
+
+  &:focus {
+    outline: #fff;
+  }
+
+  .carousel-inner {
+    padding-top: 10%;
+
+    .item {
+      padding: 0 20px;
+    }
+  }
+
+  .carousel-indicators {
+    li {
+      background-color: $primary;
+    }
   }
 }

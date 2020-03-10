@@ -37,6 +37,12 @@ header {
 .card {
   position: relative;
 }
+
+.blockquote-footer {
+  color: $primary;
+  font-size: 102%;
+}
+
 .edit-btn-container {
   position: absolute;
   top: -7px;

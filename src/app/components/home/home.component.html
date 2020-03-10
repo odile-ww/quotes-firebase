@@ -1,13 +1,17 @@
 <h1 class="text-muted">Featured Quotes</h1>
-<section>
+<carousel [interval]="2000">
   <ng-container *ngFor="let quote of featuredQuotes">
-    <blockquote class="card border-primary">
-      <div class="card-body" *ngIf="quote.isFeatured">
-        <p>{{quote.content}}</p>
-      </div>
-      <footer class="card-footer blockquote-footer text-right"> {{quote.author}},
-        <cite>{{quote.title}}</cite>
-      </footer>
-    </blockquote>
+    <slide *ngIf="quote.isFeatured" class="text-center p-4">
+      <blockquote class="blockquote text-center">
+        <p class="mb-0">
+          <i class="fa fa-quote-left"></i>
+          &nbsp;{{ quote.content }}
+        </p>
+        <footer class="blockquote-footer mt-3">
+          {{ quote.author }},
+          <cite>{{ quote.title }}</cite>
+        </footer>
+      </blockquote>
+    </slide>
   </ng-container>
-</section>
+</carousel>
