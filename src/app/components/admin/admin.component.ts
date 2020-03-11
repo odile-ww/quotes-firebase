@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebaseui from 'firebaseui';
-import * as firebase from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
+/* import * as firebase from "firebase/app";
+import { AngularFireAuth } from "@angular/fire/auth"; */
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -9,28 +9,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  adminForm: FormGroup;
+  ngOnInit() {}
 
-  ui: firebaseui.auth.AuthUI;
-
-  constructor(private afAuth: AngularFireAuth) { }
-
-  ngOnInit(): void {
-    const uiConfig = {
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-      ],
-
-      callbacks: {
-        signInSuccessWithAuthResult: this.onLoginSuccess.bind(this)
-      }
-    };
-
-    this.ui = new firebaseui.auth.AuthUI(this.afAuth.auth);
-    this.ui.start('#fb-auth-container', uiConfig);
-  }
-
-  onLoginSuccess(result) {
-    console.log('Firebase UI result', result);
-  }
+  login() {}
 }

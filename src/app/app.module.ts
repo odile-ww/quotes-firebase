@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UrlSerializer } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+/* import { AngularFireAuthModule } from '@angular/fire/auth'; */
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -39,11 +39,11 @@ import { AdminComponent } from './components/admin/admin.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule,
+    /*  AngularFireAuthModule, */
     BrowserAnimationsModule,
     CarouselModule.forRoot()
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
