@@ -1,8 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  loggedInUser: string;
+  isLoggedIn: boolean;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.getAuth().subscribe(auth => {
+      if (auth) {
+        this.isLoggedIn = true;
+        this.loggedInUser = auth.email;
+      }
+    });
+  }
+
+  onLogoutClick() {
+    this.authService.logout();
+  }
+}

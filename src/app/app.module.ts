@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UrlSerializer } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
-/* import { AngularFireAuthModule } from '@angular/fire/auth'; */
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { environment } from '../environments/environment';
 
@@ -35,13 +36,15 @@ import { AdminComponent } from './components/admin/admin.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
-    /*  AngularFireAuthModule, */
+    AngularFireAuthModule,
     BrowserAnimationsModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

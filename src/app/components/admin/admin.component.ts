@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 /* import * as firebase from "firebase/app";
-import { AngularFireAuth } from "@angular/fire/auth"; */
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+ */
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -9,8 +10,29 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  adminForm: FormGroup;
-  ngOnInit() {}
+  email: string;
+  password: string;
+  errorMessage: string;
 
-  login() {}
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.getAuth().subscribe(auth => {
+      if (auth) {
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  login() {
+    this.authService
+      .login(this.email, this.password)
+      .then(res => {
+        this.router.navigate(['/']);
+      })
+      .catch(err => {
+        this.errorMessage = err.message;
+        console.log(err);
+      });
+  }
 }
