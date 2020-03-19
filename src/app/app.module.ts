@@ -10,6 +10,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { environment } from '../environments/environment';
 
@@ -44,7 +46,9 @@ import { AdminComponent } from './components/admin/admin.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

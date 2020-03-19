@@ -2,19 +2,17 @@
   <div class="container">
     <a routerLink="/" class="navbar-brand">QuotesApp</a>
     <button
-      class="navbar-toggler"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarResponsive"
-      aria-controls="navbarResponsive"
+      class="navbar-toggler collapsed"
+      (click)="isCollapsed = !isCollapsed"
       aria-expanded="false"
-      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
     <nav
-      class="navbar-collapse collapse flex-row-reverse"
+      class="collapse navbar-collapse flex-row-reverse"
       id="navbarResponsive"
+      [collapse]="isCollapsed"
     >
       <ul class="navbar-nav">
         <li
@@ -38,23 +36,36 @@
         >
           <a routerLink="/authors" class="nav-link">Authors</a>
         </li>
-        <li
-          class="nav-item"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a routerLink="/add" class="nav-link">Add Quote</a>
-        </li>
-        <li
-          *ngIf="isLoggedIn"
-          class="nav-item"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a href="#" (click)="onLogoutClick()" class="nav-link">Logout</a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <span class="nav-link disabled">{{ loggedInUser }}</span>
+        <li class="nav-item dropdown" *ngIf="isLoggedIn" dropdown>
+          <a
+            id="button-animated"
+            dropdownToggle
+            type="button"
+            class="nav-link dropdown-toggle"
+            aria-controls="dropdown-animated"
+          >
+            {{ loggedInUser }}
+          </a>
+          <ul
+            id="dropdown-animated"
+            *dropdownMenu
+            class="dropdown-menu dropdown-menu-right"
+            role="menu"
+            aria-labelledby="button-animated"
+          >
+            <li
+              role="menuitem"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <a routerLink="/add" class="dropdown-item">Add Quote</a>
+            </li>
+            <li role="menuitem">
+              <a href="#" (click)="onLogoutClick()" class="dropdown-item"
+                >Logout</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
