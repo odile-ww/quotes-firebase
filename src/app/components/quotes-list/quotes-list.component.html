@@ -10,52 +10,25 @@
   </h5>
 </header>
 <section class="card-columns">
-  <blockquote
-    class="card"
-    *ngFor="let quote of quotes"
-    [ngClass]="{ 'bg-secondary': quote.isFeatured === true }"
-  >
-    <div class="edit-btn-container">
-      <a
-        [routerLink]="['/edit', quote.id]"
-        routerLinkActive="router-link-active"
-        class="custom-float-button"
-      >
+  <blockquote class="card" *ngFor="let quote of quotes" [ngClass]="{ 'bg-secondary': quote.isFeatured === true }">
+    <div class="edit-btn-container" *ngIf="isLoggedIn">
+      <a [routerLink]="['/edit', quote.id]" routerLinkActive="router-link-active" class="custom-float-button">
         <i class="fas fa-pencil-alt text-warning"></i>
       </a>
     </div>
-    <div
-      class="card-body"
-      [ngClass]="{ 'text-white': quote.isFeatured === true }"
-    >
+    <div class="card-body" [ngClass]="{ 'text-white': quote.isFeatured === true }">
       <p class="card-text">{{ quote.content }}</p>
       <div class="tags-container">
-        <span
-          class="badge badge-pill clickable"
-          [ngClass]="
+        <span class="badge badge-pill clickable" [ngClass]="
             quote.isFeatured ? 'badge-light text-primary' : 'badge-secondary'
-          "
-          *ngFor="let tag of quote.tags"
-          (click)="filterQuotesByTag(tag)"
-          >{{ tag }}</span
-        >
+          " *ngFor="let tag of quote.tags" (click)="filterQuotesByTag(tag)">{{ tag }}</span>
       </div>
     </div>
-    <footer
-      class="card-footer blockquote-footer text-right"
-      [ngClass]="quote.isFeatured ? 'text-white' : 'text-primary'"
-    >
-      <span
-        class="clickable"
-        (click)="filterQuotesByKey('author', quote.author)"
-        >{{ quote.author }}</span
-      >,
-      <cite
-        class="clickable"
-        [ngClass]="{ 'text-white': quote.isFeatured === true }"
-        (click)="filterQuotesByKey('title', quote.title)"
-        >{{ quote.title }}</cite
-      >
+    <footer class="card-footer blockquote-footer text-right"
+      [ngClass]="quote.isFeatured ? 'text-white' : 'text-primary'">
+      <span class="clickable" (click)="filterQuotesByKey('author', quote.author)">{{ quote.author }}</span>,
+      <cite class="clickable" [ngClass]="{ 'text-white': quote.isFeatured === true }"
+        (click)="filterQuotesByKey('title', quote.title)">{{ quote.title }}</cite>
     </footer>
   </blockquote>
 </section>
