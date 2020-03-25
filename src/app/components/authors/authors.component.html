@@ -5,16 +5,21 @@
     <div class="card-body">
       <h5 class="card-title">Notable Works:</h5>
       <ul class="list-group list-group-flush">
-        <li *ngFor="let work of author.works" class="list-group-item">{{work}}</li>
+        <li *ngFor="let work of author.works" class="list-group-item">
+          {{ work }}
+        </li>
       </ul>
       <p class="card-subtitle text-muted mt-3">
-        <a href="{{author.link}}" target="_blank" class="card-link">
-          Read more about {{ author.fullName }}
+        <a
+          class="card-link text-secondary"
+          [routerLink]="['/quotes', author.fullName]"
+        >
+          All quotes by {{ author.fullName }}
         </a>
       </p>
       <p class="card-subtitle text-muted mt-3">
-        <a class="card-link text-secondary" [routerLink]="['/quotes', author.fullName]">
-          All quotes by {{ author.fullName }}
+        <a href="{{ author.link }}" target="_blank" class="card-link">
+          Read more about {{ author.fullName }}
         </a>
       </p>
     </div>
