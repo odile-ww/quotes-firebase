@@ -30,13 +30,11 @@ export class QuotesListComponent implements OnInit {
       }
     });
 
-    const snapshotParams = Object.keys(this.route.snapshot.params),
-      queryKey = snapshotParams[0];
+    const queryKey = Object.keys(this.route.snapshot.queryParams)[0],
+      queryValue = this.route.snapshot.queryParams[queryKey];
 
-    if (snapshotParams.length > 0) {
-      const serializedParamValue = this.serializeUrl(
-        this.route.snapshot.params.author
-      );
+    if (queryKey) {
+      const serializedParamValue = this.serializeUrl(queryValue);
 
       this.filterQuotesByKey(queryKey, serializedParamValue);
     } else {
@@ -55,17 +53,8 @@ export class QuotesListComponent implements OnInit {
       this.quotes = filteredQuotes;
       this.hasFilter = true;
       this.filteredValue = tag;
+      this.router.navigate(['quotes'], { queryParams: { tag } });
     });
-  }
-
-  clearFilter() {
-    if (Object.keys(this.route.snapshot.params).length > 0) {
-      this.route.snapshot.params = {};
-      this.router.navigate(['quotes']);
-    }
-    this.getQuotes();
-    this.hasFilter = false;
-    this.filteredValue = '';
   }
 
   filterQuotesByKey(key, value) {
@@ -73,7 +62,17 @@ export class QuotesListComponent implements OnInit {
       this.quotes = filteredQuotes;
       this.hasFilter = true;
       this.filteredValue = value;
+      this.router.navigate(['quotes'], { queryParams: { key, value } });
     });
+  }
+
+  clearFilter() {
+    if (Object.keys(this.route.snapshot.queryParams).length > 0) {
+      this.router.navigate(['quotes'], { replaceUrl: true });
+    }
+    this.getQuotes();
+    this.hasFilter = false;
+    this.filteredValue = '';
   }
   // TO DO: move to some utility file
   serializeUrl(value: string): string {

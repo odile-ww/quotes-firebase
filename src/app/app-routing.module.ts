@@ -15,9 +15,12 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'quotes', component: QuotesListComponent },
-  { path: 'quotes/:author', component: QuotesListComponent },
   { path: 'add', component: QuoteCreateComponent, canActivate: [AuthGuard] },
-  { path: 'edit/:quoteId', component: QuoteCreateComponent, canActivate: [AuthGuard] },
+  {
+    path: 'edit/:quoteId',
+    component: QuoteCreateComponent,
+    canActivate: [AuthGuard]
+  },
   { path: '**', component: NotFoundComponent }
 ];
 
