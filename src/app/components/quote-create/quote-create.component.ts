@@ -27,10 +27,10 @@ export class QuoteCreateComponent implements OnInit {
     this.quoteId = this.route.snapshot.params['id'];
 
     this.quoteForm = this.fb.group({
-      content: ['', [Validators.required, Validators.minLength(5)]],
+      content: ['', [Validators.required, Validators.minLength(20)]],
       isFeatured: false,
-      author: '',
-      title: '',
+      author: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       tags: this.fb.array([this.fb.control('')])
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -59,6 +59,12 @@ export class QuoteCreateComponent implements OnInit {
 
   get content() {
     return this.quoteForm.get('content');
+  }
+  get author() {
+    return this.quoteForm.get('author');
+  }
+  get title() {
+    return this.quoteForm.get('title');
   }
   get tags() {
     return this.quoteForm.get('tags') as FormArray;

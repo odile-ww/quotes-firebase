@@ -9,32 +9,78 @@
     <div class="card-body">
       <form (ngSubmit)="login()" #adminForm="ngForm">
         <fieldset>
-          <alert type="danger" *ngIf="errorMessage">
+          <alert type="danger" *ngIf="errorMessage" [dismissOnTimeout]="5000">
             <span>{{ errorMessage }}</span>
           </alert>
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input
               type="email"
+              [email]="true"
               class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  emailText.invalid &&
+                  (emailText.dirty || emailText.touched) === true
+              }"
               id="email"
               name="email"
               [(ngModel)]="email"
               placeholder="Enter email"
               required
+              #emailText="ngModel"
             />
+            <div
+              *ngIf="
+                emailText.invalid && (emailText.dirty || emailText.touched)
+              "
+              class="row custom-error"
+            >
+              <div
+                *ngIf="emailText.errors.required"
+                class="row custom-error-message"
+              >
+                E-mail is required.
+              </div>
+              <div
+                *ngIf="emailText.errors.email"
+                class="row custom-error-message"
+              >
+                Incorrect e-mail format.
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input
               type="password"
               class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  passwordRef.invalid &&
+                  (passwordRef.dirty || passwordRef.touched) === true
+              }"
               id="password"
               name="password"
               [(ngModel)]="password"
               placeholder="Password"
               required
+              #passwordRef="ngModel"
             />
+            <div
+              *ngIf="
+                passwordRef.invalid &&
+                (passwordRef.dirty || passwordRef.touched)
+              "
+              class="row custom-error"
+            >
+              <div
+                *ngIf="passwordRef.errors.required"
+                class="row custom-error-message"
+              >
+                Password is required.
+              </div>
+            </div>
           </div>
           <button
             type="submit"

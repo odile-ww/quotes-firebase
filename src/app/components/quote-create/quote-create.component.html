@@ -18,20 +18,23 @@
         id="content"
         name="content"
         class="col-sm-8 form-control"
+        [ngClass]="{
+          'is-invalid':
+            content.invalid && (content.dirty || content.touched) === true
+        }"
         required
       ></textarea>
     </div>
     <div
-      *ngIf="content.errors?.required && content.touched"
-      class="row invalid-feedback"
+      *ngIf="content.invalid && (content.dirty || content.touched)"
+      class="row custom-error"
     >
-      This field is required.
-    </div>
-    <div
-      *ngIf="content.errors?.minlength && content.touched"
-      class="row invalid-feedback"
-    >
-      Must have at least 5 characters.
+      <div *ngIf="content.errors.minlength" class="row custom-error-message">
+        Must have at least 20 characters.
+      </div>
+      <div *ngIf="content.errors.required" class="row custom-error-message">
+        This field is required.
+      </div>
     </div>
   </div>
   <div class="form-group">
@@ -51,10 +54,22 @@
         id="author"
         name="author"
         class="col-sm-8 form-control"
+        [ngClass]="{
+          'is-invalid':
+            author.invalid && (author.dirty || author.touched) === true
+        }"
+        required
       />
     </div>
+    <div
+      *ngIf="author.invalid && (author.dirty || author.touched)"
+      class="row custom-error"
+    >
+      <div *ngIf="author.errors.required" class="row custom-error-message">
+        This field is required.
+      </div>
+    </div>
   </div>
-
   <div class="form-group">
     <div class="row mt-4">
       <label for="title" class="col-sm-2 col-form-label ">Title:</label>
@@ -64,10 +79,21 @@
         id="title"
         name="title"
         class="col-sm-8 form-control"
+        [ngClass]="{
+          'is-invalid': title.invalid && (title.dirty || title.touched) === true
+        }"
+        required
       />
     </div>
+    <div
+      *ngIf="title.invalid && (author.dirty || title.touched)"
+      class="row custom-error"
+    >
+      <div *ngIf="title.errors.required" class="row custom-error-message">
+        This field is required.
+      </div>
+    </div>
   </div>
-
   <div formArrayName="tags" class="form-group">
     <div *ngFor="let tag of tags.controls; let i = index" class="row mt-4">
       <label for="tag-{{ i }}" class="col-sm-2 col-form-label "

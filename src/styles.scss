@@ -58,3 +58,13 @@ h5 {
     }
   }
 }
+.custom-error {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+
+  .custom-error-message {
+    font-size: 80%;
+    color: $danger;
+  }
+}
