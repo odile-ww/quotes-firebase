@@ -33,6 +33,7 @@ export class QuotesService {
   }
 
   getQuotes(): Observable<Quote[]> {
+    this.message = undefined;
     this.quotes = this.quotesCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(action => {
@@ -45,33 +46,33 @@ export class QuotesService {
     return this.quotes;
   }
   getQuotesByKey(key, value): Observable<Quote[]> {
-    return this.afs.collection('quotes', ref =>
-    ref.where(key, '==', value))
-    .snapshotChanges()
-    .pipe(
-      map(snaps => {
-        return snaps.map(snap => {
-          const data = snap.payload.doc.data() as Quote;
-          data.id = snap.payload.doc.id;
-          return data;
-        });
-      })
-    );
+    return this.afs
+      .collection('quotes', ref => ref.where(key, '==', value))
+      .snapshotChanges()
+      .pipe(
+        map(snaps => {
+          return snaps.map(snap => {
+            const data = snap.payload.doc.data() as Quote;
+            data.id = snap.payload.doc.id;
+            return data;
+          });
+        })
+      );
   }
 
   getQuotesByTag(tag): Observable<Quote[]> {
-    return this.afs.collection('quotes', ref =>
-    ref.where('tags', 'array-contains', tag))
-    .snapshotChanges()
-    .pipe(
-      map(snaps => {
-        return snaps.map(snap => {
-          const data = snap.payload.doc.data() as Quote;
-          data.id = snap.payload.doc.id;
-          return data;
-        });
-      })
-    );
+    return this.afs
+      .collection('quotes', ref => ref.where('tags', 'array-contains', tag))
+      .snapshotChanges()
+      .pipe(
+        map(snaps => {
+          return snaps.map(snap => {
+            const data = snap.payload.doc.data() as Quote;
+            data.id = snap.payload.doc.id;
+            return data;
+          });
+        })
+      );
   }
 
   getSingleQuote(id: string): Observable<Quote> {
