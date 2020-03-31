@@ -34,17 +34,20 @@ export class QuotesService {
 
   getQuotes(): Observable<Quote[]> {
     this.message = undefined;
-    this.quotes = this.quotesCollection.snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(action => {
-          const data = action.payload.doc.data() as Quote;
-          data.id = action.payload.doc.id;
-          return data;
-        });
-      })
-    );
-    return this.quotes;
+    return this.quotesCollection
+      .snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(action => {
+            return <Quote>{
+              id: action.payload.doc.id,
+              ...action.payload.doc.data()
+            };
+          });
+        })
+      );
   }
+
   getQuotesByKey(key, value): Observable<Quote[]> {
     return this.afs
       .collection('quotes', ref => ref.where(key, '==', value))
@@ -77,18 +80,20 @@ export class QuotesService {
 
   getSingleQuote(id: string): Observable<Quote> {
     this.quoteDoc = this.afs.doc<Quote>(`quotes/${id}`);
-    this.quote = this.quoteDoc.snapshotChanges().pipe(
-      map(action => {
-        if (action.payload.exists === false) {
-          return null;
-        } else {
-          const data = action.payload.data() as Quote;
-          data.id = action.payload.id;
-          return data;
-        }
-      })
-    );
-    return this.quote;
+    return this.quoteDoc
+      .snapshotChanges()
+      .pipe(
+        map(action => {
+          if (action.payload.exists === false) {
+            return null;
+          } else {
+            return <Quote>{
+              id: action.payload.id,
+              ...action.payload.data()
+            };
+          }
+        })
+      );
   }
 
   addQuote(quote: Quote) {
@@ -107,15 +112,17 @@ export class QuotesService {
   }
 
   getAuthors(): Observable<Author[]> {
-    this.authors = this.authorsCollection.snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(action => {
-          const data = action.payload.doc.data() as Author;
-          data.id = action.payload.doc.id;
-          return data;
-        });
-      })
-    );
-    return this.authors;
+    return this.authorsCollection
+      .snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(action => {
+            return {
+              id: action.payload.doc.id,
+              ...action.payload.doc.data()
+            };
+          });
+        })
+      );
   }
 }
