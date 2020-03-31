@@ -15,13 +15,16 @@ export class QuotesListComponent implements OnInit {
   hasFilter: boolean;
   filteredValue: string;
   isLoggedIn: boolean;
+  message: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private quoteService: QuotesService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.message = quoteService.message;
+  }
 
   ngOnInit() {
     this.authService.getAuth().subscribe(auth => {

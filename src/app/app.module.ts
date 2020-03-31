@@ -12,6 +12,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { environment } from '../environments/environment';
 
@@ -48,7 +49,8 @@ import { AdminComponent } from './components/admin/admin.component';
     CarouselModule.forRoot(),
     AlertModule.forRoot(),
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

@@ -9,6 +9,9 @@
     Clear filter
   </h5>
 </header>
+<alert type="success" *ngIf="message" [dismissOnTimeout]="5000">
+  <span>{{ message }}</span>
+</alert>
 <section class="card-columns">
   <blockquote class="card" *ngFor="let quote of quotes" [ngClass]="{ 'bg-secondary': quote.isFeatured === true }">
     <div class="edit-btn-container" *ngIf="isLoggedIn">

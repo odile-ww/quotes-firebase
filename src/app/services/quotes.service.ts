@@ -21,6 +21,7 @@ export class QuotesService {
   quote: Observable<Quote>;
   authors: Observable<Author[]>;
   author: Observable<Author>;
+  message: string;
 
   constructor(private afs: AngularFirestore) {
     this.quotesCollection = this.afs.collection('quotes', ref =>
@@ -91,14 +92,17 @@ export class QuotesService {
 
   addQuote(quote: Quote) {
     this.quotesCollection.add(quote);
+    this.message = 'You have successfully added a new quote!';
   }
 
   updateQuote(quote: Quote) {
     this.afs.doc(`quotes/${quote.id}`).update(quote);
+    this.message = 'You have successfuly updated the quote!';
   }
 
   deleteQuote(quote: Quote) {
     this.afs.doc(`quotes/${quote.id}`).delete();
+    this.message = 'You have successfully deleted the quote!';
   }
 
   getAuthors(): Observable<Author[]> {

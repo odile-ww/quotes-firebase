@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { QuotesService } from '../../services/quotes.service';
 import { Quote } from '../../models/QuoteModel';
@@ -15,12 +16,15 @@ export class QuoteCreateComponent implements OnInit {
   mode = 'create';
   quote: Quote;
   private quoteId: string;
+  bsModalRef: BsModalRef;
+  message: string;
 
   constructor(
     private fb: FormBuilder,
     private quotesService: QuotesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -92,10 +96,20 @@ export class QuoteCreateComponent implements OnInit {
     this.router.navigate(['/quotes']);
   }
 
-  deleteQuote(e) {
-    if (confirm('Are you sure you want to delete this quote?')) {
-      this.quotesService.deleteQuote(this.quote);
-    }
+  deleteQuote() {
+    this.quotesService.deleteQuote(this.quote);
     this.router.navigate(['/quotes']);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(template, { class: 'modal-md' });
+  }
+  confirm(): void {
+    this.bsModalRef.hide();
+    this.deleteQuote();
+  }
+
+  decline(): void {
+    this.bsModalRef.hide();
   }
 }

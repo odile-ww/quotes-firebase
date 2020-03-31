@@ -4,9 +4,20 @@
   *ngIf="mode === 'edit'"
   class="custom-button-wrapper row mb-2 flex-row-reverse"
 >
-  <button class="custom-float-button" (click)="deleteQuote($event)">
+  <button class="custom-float-button" (click)="openModal(template)">
     <i class="fas fa-trash-alt"></i>
   </button>
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Are you sure you want to delete this Quote?</p>
+      <button type="button" class="btn btn-danger mr-3" (click)="confirm()">
+        Yes
+      </button>
+      <button type="button" class="btn btn-primary" (click)="decline()">
+        No
+      </button>
+    </div>
+  </ng-template>
 </div>
 <form [formGroup]="quoteForm" (ngSubmit)="saveQuote(quoteForm.value)">
   <div class="form-group">
@@ -86,7 +97,7 @@
       />
     </div>
     <div
-      *ngIf="title.invalid && (author.dirty || title.touched)"
+      *ngIf="title.invalid && (title.dirty || title.touched)"
       class="row custom-error"
     >
       <div *ngIf="title.errors.required" class="row custom-error-message">
