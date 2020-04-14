@@ -1,8 +1,12 @@
-<h1 class="text-muted col-sm-8" *ngIf="!hasFilter">All Quotes</h1>
-<header *ngIf="hasFilter">
+<h1 class="text-muted col-sm-8" *ngIf="!hasFilter && !searchText">
+  All Quotes
+</h1>
+<header *ngIf="hasFilter || searchText">
   <h5 class="text-muted">
     You're seeing quotes for:
-    <span>{{ filteredValue }}</span>
+    <span *ngIf="filteredValue">{{ filteredValue }}</span>
+    <span *ngIf="filteredValue && searchText">&nbsp;+&nbsp;</span>
+    <span *ngIf="searchText">{{ searchText }}</span>
   </h5>
   <h5 class="clickable" (click)="clearFilter()">
     <i class="fas fa-times"></i>
@@ -12,10 +16,21 @@
 <alert type="success" *ngIf="isLoggedIn && message" [dismissOnTimeout]="3000">
   <span>{{ message }}</span>
 </alert>
+<div class="row px-3">
+  <input
+    class="form-control col-sm-5 offset-7 mb-4"
+    type="text"
+    name="search"
+    [(ngModel)]="searchText"
+    autocomplete="off"
+    placeholder="Search for a quote, title or author..."
+  />
+</div>
+
 <section class="card-columns">
   <blockquote
     class="card"
-    *ngFor="let quote of quotes"
+    *ngFor="let quote of quotes | filter: searchText"
     [ngClass]="{ 'bg-secondary': quote.isFeatured === true }"
   >
     <div class="edit-btn-container" *ngIf="isLoggedIn">

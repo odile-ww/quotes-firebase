@@ -8,6 +8,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -51,6 +53,7 @@ import { AdminComponent } from './components/admin/admin.component';
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    Ng2SearchPipeModule
   ],
   providers: [{ provide: UrlSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { QuotesService } from '../../services/quotes.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-quotes-list',
   templateUrl: './quotes-list.component.html',
-  styleUrls: ['./quotes-list.component.scss']
+  styleUrls: ['./quotes-list.component.scss'],
 })
 export class QuotesListComponent implements OnInit {
   quotes: Quote[];
@@ -16,6 +16,7 @@ export class QuotesListComponent implements OnInit {
   filteredValue: string;
   isLoggedIn: boolean;
   message: string;
+  searchText: string;
 
   constructor(
     private router: Router,
@@ -27,7 +28,7 @@ export class QuotesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe(auth => {
+    this.authService.getAuth().subscribe((auth) => {
       if (auth) {
         this.isLoggedIn = true;
       }
@@ -46,13 +47,13 @@ export class QuotesListComponent implements OnInit {
   }
 
   getQuotes() {
-    this.quoteService.getQuotes().subscribe(quotes => {
+    this.quoteService.getQuotes().subscribe((quotes) => {
       this.quotes = quotes;
     });
   }
 
   filterQuotesByTag(tag) {
-    this.quoteService.getQuotesByTag(tag).subscribe(filteredQuotes => {
+    this.quoteService.getQuotesByTag(tag).subscribe((filteredQuotes) => {
       this.quotes = filteredQuotes;
       this.hasFilter = true;
       this.filteredValue = tag;
@@ -61,7 +62,7 @@ export class QuotesListComponent implements OnInit {
   }
 
   filterQuotesByKey(key, value) {
-    this.quoteService.getQuotesByKey(key, value).subscribe(filteredQuotes => {
+    this.quoteService.getQuotesByKey(key, value).subscribe((filteredQuotes) => {
       this.quotes = filteredQuotes;
       this.hasFilter = true;
       this.filteredValue = value;
@@ -76,6 +77,7 @@ export class QuotesListComponent implements OnInit {
     this.getQuotes();
     this.hasFilter = false;
     this.filteredValue = '';
+    this.searchText = '';
   }
   // TO DO: move to some utility file
   serializeUrl(value: string): string {
