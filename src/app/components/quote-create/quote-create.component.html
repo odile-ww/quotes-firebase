@@ -58,6 +58,12 @@
   </div>
   <div class="form-group">
     <div class="row">
+      <label for="uploadFile" class="col-sm-2 col-form-label ">Upload Image:</label>
+      <input type="file" formControlName="uploadFile" id="uploadFile" (change)="uploadFile($event)" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
       <label for="author" class="col-sm-2 col-form-label ">Author:</label>
       <input
         type="text"

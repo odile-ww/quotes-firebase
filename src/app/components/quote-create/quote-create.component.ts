@@ -5,11 +5,12 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { QuotesService } from '../../services/quotes.service';
 import { Quote } from '../../models/QuoteModel';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-quote-create',
   templateUrl: './quote-create.component.html',
-  styleUrls: ['./quote-create.component.scss']
+  styleUrls: ['./quote-create.component.scss'],
 })
 export class QuoteCreateComponent implements OnInit {
   quoteForm: FormGroup;
@@ -24,7 +25,8 @@ export class QuoteCreateComponent implements OnInit {
     private quotesService: QuotesService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private storage: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -35,25 +37,27 @@ export class QuoteCreateComponent implements OnInit {
       isFeatured: false,
       author: ['', [Validators.required]],
       title: ['', [Validators.required]],
-      tags: this.fb.array([this.fb.control('')])
+      tags: this.fb.array([this.fb.control('')]),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('quoteId')) {
         this.mode = 'edit';
         this.quoteId = paramMap.get('quoteId');
-        this.quotesService.getSingleQuote(this.quoteId).subscribe(quoteData => {
-          this.quote = quoteData;
-          this.quoteForm.patchValue({
-            content: this.quote.content,
-            author: this.quote.author,
-            title: this.quote.title,
-            isFeatured: this.quote.isFeatured
+        this.quotesService
+          .getSingleQuote(this.quoteId)
+          .subscribe((quoteData) => {
+            this.quote = quoteData;
+            this.quoteForm.patchValue({
+              content: this.quote.content,
+              author: this.quote.author,
+              title: this.quote.title,
+              isFeatured: this.quote.isFeatured,
+            });
+            this.quoteForm.setControl(
+              'tags',
+              this.fb.array(this.quote.tags || [])
+            );
           });
-          this.quoteForm.setControl(
-            'tags',
-            this.fb.array(this.quote.tags || [])
-          );
-        });
       } else {
         this.mode = 'create';
         this.quoteId = null;
@@ -72,6 +76,11 @@ export class QuoteCreateComponent implements OnInit {
   }
   get tags() {
     return this.quoteForm.get('tags') as FormArray;
+  }
+
+  uploadFile(e) {
+    const file: File = e.target.files[0];
+    const filepath: string = ``;
   }
 
   addTag(e) {
